@@ -1,49 +1,49 @@
 <template>
   <slot>
-    <box-shadow class="wrapper" :class="{ 'move-right': !isLogin, left: isLogin }">
-      <h1 v-if="isLogin" style="margin-top: 30%">Login</h1>
-      <h1 v-else style="margin-top: 10%">Register</h1>
-      <form @submit.prevent="save" class="form">
-        <div class="form__input-box">
+    <box-shadow class="auth-form__wrapper" :class="{ 'auth-form__wrapper--move-right': !isLogin, 'auth-form__wrapper--left': isLogin }">
+      <h1 v-if="isLogin" style="margin-top: 25%">Login</h1>
+      <h1 v-else style="margin-top: 5%">Register</h1>
+      <form @submit.prevent="save" class="auth-form__form">
+        <div class="auth-form__form--input-box">
           <box-icon type="solid" name="user-circle"></box-icon>
           <input type="text" v-model="username" required />
           <label>Username</label>
         </div>
-        <div class="form__input-box">
+        <div class="auth-form__form--input-box">
           <box-icon name="key"></box-icon>
           <input type="password" v-model="password" required />
           <label>Password</label>
         </div>
-        <div class="form__input-box" v-show="!isLogin">
+        <div class="auth-form__form--input-box" v-show="!isLogin">
           <box-icon name="id-card"></box-icon>
           <input type="text" v-model="firstname" :required="!isLogin" />
           <label>Firstname</label>
         </div>
-        <div class="form__input-box" v-show="!isLogin">
+        <div class="auth-form__form--input-box" v-show="!isLogin">
           <box-icon name="id-card"></box-icon>
           <input type="text" v-model="lastname" :required="!isLogin" />
           <label>Lastname</label>
         </div>
-        <div class="form__input-radio" v-show="!isLogin">
+        <div class="auth-form__form--input-radio" v-show="!isLogin">
           <label>Role</label>
           <input type="radio" v-model="role" value="1" :required="!isLogin" />
           <label>User</label>
           <input type="radio" v-model="role" value="0" :required="!isLogin" />
           <label>Admin</label>
         </div>
-        <div class="form__submit-button">
+        <div class="auth-form__form--submit-button">
           <button-primary v-if="isLogin" type="submit">Login</button-primary>
           <button-primary v-else type="submit">Register</button-primary>
         </div>
       </form>
     </box-shadow>
-    <box-shadow class="wrapper" :class="{ 'move-left': isLogin, right: !isLogin }">
+    <box-shadow class="auth-form__wrapper" :class="{ 'auth-form__wrapper--move-left': !isLogin, 'auth-form__wrapper--right': isLogin }">
       <div v-if="!isLogin">
-        <div class="content">
+        <div class="auth-form__wrapper--content">
           <h1>Welcome Back?</h1>
           <p>All ready have an account?</p>
           <p style="margin-top: 10%">Click to Singup</p>
-          <div style="margin-top: 5%" class="form__toggle-button">
+          <div style="margin-top: 5%" class="auth-form__wrapper--toggle-button">
             <button-secondary @click="toggle" :class="{ active: !isLogin }" type="button"
               >Login</button-secondary
             >
@@ -51,11 +51,11 @@
         </div>
       </div>
       <div v-else>
-        <div class="content">
+        <div class="auth-form__wrapper--content">
           <h1>Hello?</h1>
           <p>Don't have an account?</p>
           <p style="margin-top: 10%">Click to join</p>
-          <div style="margin-top: 5%" class="form__toggle-button">
+          <div style="margin-top: 5%" class="auth-form__wrapper--toggle-button">
             <button-secondary @click="toggle" :class="{ active: !isLogin }" type="button"
               >Register</button-secondary
             >
@@ -161,68 +161,71 @@ export default {
 }
 </script>
 <style scoped>
-.wrapper {
+.auth-form__wrapper {
   min-width: 500px;
   min-height: 600px;
-  border-radius: 12px 0px 0px 12px;
   transition: transform 0.3s ease;
 }
-.wrapper h1 {
+.auth-form__wrapper h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
   text-align: center;
 }
-.wrapper.move-right {
-  min-width: 500px;
-  border-radius: 12px 0px 0px 12px;
-  transition: transform 0.3s ease;
+
+/* content wrapper */
+.auth-form__wrapper--right {
+  min-width: 450px;
+  border-radius: 0px 12px 12px 0px;
   transform: translateX(0%);
 }
-.wrapper.move-left {
-  min-width: 500px;
+.auth-form__wrapper--move-left {
+  min-width: 450px;
   border-radius: 12px 0px 0px 12px;
   transform: translateX(-100%);
 }
-.wrapper.right {
-  min-width: 450px;
-  border-radius: 0px 12px 12px 0px;
-  transform: translateX(0%);
-}
-.wrapper.left {
-  min-width: 450px;
-  border-radius: 0px 12px 12px 0px;
-  transform: translateX(100%);
-}
-.wrapper .content {
+
+.auth-form__wrapper--content {
   margin-top: 30%;
   text-align: center;
 }
-.wrapper .content p {
+.auth-form__wrapper--content p {
   color: var(--grey-400);
 }
-
-.form__toggle-button {
+.auth-form__wrapper--toggle-button {
   display: flex;
   justify-content: center;
   width: 220px;
   margin: auto;
   position: relative;
 }
-.form__submit-button{
+/* form wrapper */
+.auth-form__wrapper--left {
+  min-width: 500px;
+  border-radius: 12px 0px 0px 12px;
+  transform: translateX(0%);
+}
+.auth-form__wrapper--move-right {
+  min-width: 500px;
+  border-radius: 0px 12px 12px 0px;
+  transition: transform 0.3s ease;
+  transform: translateX(100%);
+}
+
+.auth-form__form--submit-button{
   margin: 1rem auto;
   width: 75%;
 }
 /* form */
-form {
+.auth-form__form {
   text-align: center;
   transition: transform 0.5s ease;
 }
-.form__input-box {
+.auth-form__form--input-box {
   height: 50px;
-  margin: 1.5rem auto;
+  margin: 2rem auto;
   position: relative;
 }
-.form__input-box input {
+.auth-form__form--input-box input {
   text-align: left;
   width: 75%;
   height: 100%;
@@ -236,10 +239,10 @@ form {
     inset 2px 2px 4px #d1d9e6,
     inset -2px -2px 4px #f9f9f9;
 }
-.form__input-box input:focus {
+.auth-form__form--input-box input:focus {
   border: 1px solid var(--indigo-400);
 }
-.form__input-box label {
+.auth-form__form--input-box label {
   left: 15.1%;
   top: 25%;
   margin-left: 2rem;
@@ -247,14 +250,14 @@ form {
   pointer-events: none;
   transition: transform 1s ease-in-out;
 }
-.form__input-box input:focus ~ label,
-.form__input-box input:valid ~ label {
+.auth-form__form--input-box input:focus ~ label,
+.auth-form__form--input-box input:valid ~ label {
   top: -1.5rem;
 }
-.form__input-box input:invalid ~ label {
+.auth-form__form--input-box input:invalid ~ label {
 }
 
-.form__input-box box-icon {
+.auth-form__form--input-box box-icon {
   box-sizing: content-box;
   position: absolute;
   margin-left: 1rem;

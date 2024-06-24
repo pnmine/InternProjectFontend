@@ -1,10 +1,11 @@
 <template>
-  <div class="shadow">
+  <div class="box-shadow">
     <slot></slot>
   </div>
 </template>
+
 <style scoped>
-.shadow {
+.box-shadow {
   background-color: var(--sky-025);
   box-shadow:
     10px 10px 10px var(--sky-050),

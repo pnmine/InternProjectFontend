@@ -1,11 +1,11 @@
 <template>
-  <div class="auth__container">
+  <div class="auth-view__container">
     <auth-form></auth-form>
   </div>
 </template>
 
 <script>
-import AuthForm from '../components/AuthForm/Form.vue'
+import AuthForm from '../components/AuthForm/AuthForm.vue'
 export default {
   name: 'AuthView',
   components: {
@@ -26,8 +26,9 @@ export default {
   }
 }
 </script>
+
 <style scoped>
-.auth__container {
+.auth-view__container {
   display: flex;
   justify-content: center;
   align-items: center;

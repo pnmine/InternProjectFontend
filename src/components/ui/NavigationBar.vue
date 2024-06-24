@@ -1,14 +1,15 @@
 <template>
-  <nav class="navigation__bar">
-    <router-link to="/" class="nav__home">
+  <nav class="navigation-bar">
+    <router-link to="/" class="navigation-bar__home">
       <box-icon type="solid" name="home-heart"> </box-icon>
-      <h1>DashBroad</h1>
+      <h1 class="navigation-bar__title">DashBroad</h1>
     </router-link>
-    <div class="nav_button">
+    <div class="navigation-bar__button">
       <button-secondary @click="logout">Logout</button-secondary>
     </div>
   </nav>
 </template>
+
 <script>
 import ButtonSecondary from './ButtonSecondary.vue'
 export default {
@@ -28,8 +29,9 @@ export default {
   }
 }
 </script>
+
 <style scoped>
-.navigation__bar {
+.navigation-bar {
   display: flex;
   align-items: center;
   backdrop-filter: blur(12px);
@@ -56,22 +58,26 @@ export default {
   line-height: 24px;
   z-index: 1;
 }
-.nav__home {
+
+.navigation-bar__home {
   display: flex;
   align-items: center;
   text-decoration: none;
   color: black;
 }
-.nav__home box-icon {
+
+.navigation-bar__home box-icon {
   margin-right: 8px;
 }
-.nav_button {
+
+.navigation-bar__button {
   display: flex;
   position: relative;
   justify-content: center;
   width: 110px;
 }
-.nav_button button {
+
+.navigation-bar__button button {
   height: 40px;
   font-size: 0.9rem;
 }
