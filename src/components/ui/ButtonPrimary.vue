@@ -19,10 +19,13 @@
   box-shadow:
     var(--indigo-300) 0px 2px 10px 0px,
     var(--sky-050) 0px 7px 29px 0px;
-  transition: all 0.1s ease-in;
+  transition: all 0.3s ease-in-out;
 }
 .button-primary:hover {
   color: var(--indigo-400);
   background-color: var(--grey-050);
+  box-shadow:
+    var(--indigo-300) -2px 2px 10px 0px,
+    var(--sky-050) 0px 7px 29px 0px;
 }
 </style>

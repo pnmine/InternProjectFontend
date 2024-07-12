@@ -30,14 +30,17 @@ export const useUserStore = defineStore('user', {
       console.log("logon");
       this.user.token = localStorage.getItem('token')
       this.user.tokenExpiration = localStorage.getItem('tokenExpiration')
+      console.log("tokenExpiration", this.user.tokenExpiration)
       this.user.userId = localStorage.getItem('userId')
       if(this.user.token){
         this.loggedIn = true
         axios.defaults.headers.common['Authorization'] = 'bearer' +" "+ this.user.token
       }
+      console.log("axios.defaults", axios.defaults)
 
       if (this.user.token && this.user.tokenExpiration) {
-        const expiresIn = +this.user.tokenExpiration - new Date().getTime()
+        const expiresIn = +new Date(this.user.tokenExpiration) - new Date().getTime()
+        console.log("expiresIn", expiresIn)
         if (expiresIn < 0) {
           this.logout()
         }

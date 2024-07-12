@@ -1,10 +1,15 @@
 <template>
   <nav class="navigation-bar">
-    <router-link to="/" class="navigation-bar__home">
-      <box-icon type="solid" name="home-heart"> </box-icon>
-      <h1 class="navigation-bar__title">DashBroad</h1>
+    <router-link to="/" class="navigation-bar__dashboard">
+      <box-icon
+        class="navigation-bar__dashboard--icon"
+        type="solid"
+        size="sm"
+        name="dashboard"
+      ></box-icon>
+      <h1 class="navigation-bar__dashboard--title">Dashboard</h1>
     </router-link>
-    <div class="navigation-bar__button">
+    <div class="navigation-bar__logout">
       <button-secondary @click="logout">Logout</button-secondary>
     </div>
   </nav>
@@ -47,7 +52,7 @@ export default {
   box-shadow:
     rgba(0, 0, 0, 0) 0px 0px 0px 0px,
     rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-    rgb(255, 255, 255) 0px 20px 20px -12px;
+    rgb(255, 255, 255) 0px 5px 15px 0px;
   box-sizing: border-box;
   height: 64px;
   width: 100%;
@@ -59,25 +64,32 @@ export default {
   z-index: 1;
 }
 
-.navigation-bar__home {
+.navigation-bar__dashboard {
   display: flex;
   align-items: center;
   text-decoration: none;
   color: black;
 }
 
-.navigation-bar__home box-icon {
+.navigation-bar__dashboard--icon {
   margin-right: 8px;
 }
+.navigation-bar__dashboard--icon svg {
+  color: red;
+}
+.navigation-bar__dashboard--title {
+  font-family: 'Kanit', sans-serif;
+  font-weight: 500;
+}
 
-.navigation-bar__button {
+.navigation-bar__logout {
   display: flex;
   position: relative;
   justify-content: center;
-  width: 110px;
+  width: 100px;
 }
 
-.navigation-bar__button button {
+.navigation-bar__logout button {
   height: 40px;
   font-size: 0.9rem;
 }

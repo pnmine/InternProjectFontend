@@ -7,7 +7,7 @@
 .button-secondary {
   color: var(--indigo-400);
   margin: 1rem auto;
-  width: 75%;
+  width: 100%;
   height: 50px;
   border: none;
   outline: none;
@@ -15,8 +15,8 @@
   background-clip: padding-box;
   background: var(--grey-050);
   box-shadow:
-    inset 2px 2px 4px #d1d9e6,
-    inset -2px -2px 4px #f9f9f9,
+    inset 2px 2px 4px var(--sky-050),
+    inset -2px -2px 4px var(--grey-055),
     var(--sky-050) 0px 7px 29px 0px;
   font-size: 1.2rem;
   cursor: pointer;

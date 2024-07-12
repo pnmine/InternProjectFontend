@@ -1,17 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useUserStore } from '../stores/user.js'
 import AuthPage from '../views/AuthPage.vue'
-import DashBroad from '../views/DashBroad.vue'
+import Dashboard from '../views/DashBoard.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'dashbroad',
-      component: DashBroad,
-      meta: { requiresAuth: true },
-
+      name: 'dashboard',
+      component: Dashboard,
+      meta: { requiresAuth: true }
     },
     {
       path: '/auth',
@@ -20,7 +19,6 @@ const router = createRouter({
     }
   ]
 })
-
 
 router.beforeEach((to, from, next) => {
   console.log(to, from)

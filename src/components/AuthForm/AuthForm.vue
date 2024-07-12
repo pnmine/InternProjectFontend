@@ -1,29 +1,44 @@
 <template>
   <slot>
-    <box-shadow class="auth-form__wrapper" :class="{ 'auth-form__wrapper--move-right': !isLogin, 'auth-form__wrapper--left': isLogin }">
+    <box-shadow
+      class="auth-form__wrapper"
+      :class="{ 'auth-form__wrapper--move-right': !isLogin, 'auth-form__wrapper--left': isLogin }"
+    >
       <h1 v-if="isLogin" style="margin-top: 25%">Login</h1>
       <h1 v-else style="margin-top: 5%">Register</h1>
       <form @submit.prevent="save" class="auth-form__form">
-        <div class="auth-form__form--input-box">
-          <box-icon type="solid" name="user-circle"></box-icon>
-          <input type="text" v-model="username" required />
-          <label>Username</label>
-        </div>
-        <div class="auth-form__form--input-box">
-          <box-icon name="key"></box-icon>
-          <input type="password" v-model="password" required />
-          <label>Password</label>
-        </div>
-        <div class="auth-form__form--input-box" v-show="!isLogin">
-          <box-icon name="id-card"></box-icon>
-          <input type="text" v-model="firstname" :required="!isLogin" />
-          <label>Firstname</label>
-        </div>
-        <div class="auth-form__form--input-box" v-show="!isLogin">
-          <box-icon name="id-card"></box-icon>
-          <input type="text" v-model="lastname" :required="!isLogin" />
-          <label>Lastname</label>
-        </div>
+        <input-box
+          class="auth-form__form--input-box"
+          v-model="username"
+          label="Username"
+          icon="user-circle"
+          required
+        />
+        <input-box
+          class="auth-form__form--input-box"
+          v-model="password"
+          label="Password"
+          icon="key"
+          type="solid"
+          inputType="password"
+          required
+        />
+        <input-box
+          class="auth-form__form--input-box"
+          v-if="!isLogin"
+          v-model="firstname"
+          label="Firstname"
+          icon="id-card"
+          :required="!isLogin"
+        />
+        <input-box
+          class="auth-form__form--input-box"
+          v-if="!isLogin"
+          v-model="lastname"
+          label="Lastname"
+          icon="id-card"
+          :required="!isLogin"
+        />
         <div class="auth-form__form--input-radio" v-show="!isLogin">
           <label>Role</label>
           <input type="radio" v-model="role" value="1" :required="!isLogin" />
@@ -37,10 +52,13 @@
         </div>
       </form>
     </box-shadow>
-    <box-shadow class="auth-form__wrapper" :class="{ 'auth-form__wrapper--move-left': !isLogin, 'auth-form__wrapper--right': isLogin }">
+    <box-shadow
+      class="auth-form__wrapper"
+      :class="{ 'auth-form__wrapper--move-left': !isLogin, 'auth-form__wrapper--right': isLogin }"
+    >
       <div v-if="!isLogin">
         <div class="auth-form__wrapper--content">
-          <h1>Welcome Back?</h1>
+          <h1>Welcome Back!</h1>
           <p>All ready have an account?</p>
           <p style="margin-top: 10%">Click to Singup</p>
           <div style="margin-top: 5%" class="auth-form__wrapper--toggle-button">
@@ -70,13 +88,15 @@ import axios from '../../axios.js'
 import BoxShadow from '../ui/BoxShadow.vue'
 import ButtonPrimary from '../ui/ButtonPrimary.vue'
 import ButtonSecondary from '../ui/ButtonSecondary.vue'
+import InputBox from '../ui/InputBox.vue'
 
 export default {
   name: 'LoginRegisterForm',
   components: {
     BoxShadow,
     ButtonPrimary,
-    ButtonSecondary
+    ButtonSecondary,
+    InputBox
   },
   data() {
     return {
@@ -185,6 +205,8 @@ export default {
 }
 
 .auth-form__wrapper--content {
+  display: flex;
+  flex-direction: column;
   margin-top: 30%;
   text-align: center;
 }
@@ -211,7 +233,7 @@ export default {
   transform: translateX(100%);
 }
 
-.auth-form__form--submit-button{
+.auth-form__form--submit-button {
   margin: 1rem auto;
   width: 75%;
 }
@@ -221,49 +243,6 @@ export default {
   transition: transform 0.5s ease;
 }
 .auth-form__form--input-box {
-  height: 50px;
-  margin: 2rem auto;
-  position: relative;
-}
-.auth-form__form--input-box input {
-  text-align: left;
   width: 75%;
-  height: 100%;
-  border: none;
-  outline: none;
-  border: 1px solid var(--grey-050);
-  border-radius: 2rem;
-  padding-left: 3rem;
-  background: transparent;
-  box-shadow:
-    inset 2px 2px 4px #d1d9e6,
-    inset -2px -2px 4px #f9f9f9;
-}
-.auth-form__form--input-box input:focus {
-  border: 1px solid var(--indigo-400);
-}
-.auth-form__form--input-box label {
-  left: 15.1%;
-  top: 25%;
-  margin-left: 2rem;
-  position: absolute;
-  pointer-events: none;
-  transition: transform 1s ease-in-out;
-}
-.auth-form__form--input-box input:focus ~ label,
-.auth-form__form--input-box input:valid ~ label {
-  top: -1.5rem;
-}
-.auth-form__form--input-box input:invalid ~ label {
-}
-
-.auth-form__form--input-box box-icon {
-  box-sizing: content-box;
-  position: absolute;
-  margin-left: 1rem;
-  /* margin-top: 13px;  50% of the height but 24x24 = 50-24 = 26  ,26/2 =13 */
-  transform: translateY(
-    50%
-  ); /* use percentage values: the percentage is relative to the element itself, and not the parent. */
 }
 </style>
